@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuidado e Lazer</title>
+  <style>
+    :root {
+      --bg-color: #F3E8FF;
+      --text-color: #2E1065;
+      --card-bg: #FFFFFF;
+      --accent-color: #7E22CE;
+      --font-size: 20px;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1E1035;
+      --text-color: #F5F3FF;
+      --card-bg: #2D1B4E;
+      --accent-color: #C084FC;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: var(--font-size);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--accent-color);
+    }
+
+    .btn-acessibilidade {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Cuidado & Lazer</h1>
+    <button class="btn-acessibilidade" onclick="alternarTema()">🌙 Alternar Modo Noturno</button>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Dicas de Saúde</h2>
+      <p>Lembre-se de beber água regularmente e fazer pequenas caminhadas ao longo do dia.</p>
+    </section>
+
+    <section class="card">
+      <h2>Jogos Interativos</h2>
+      <p>Exercite sua mente com jogos simples de memória e caça-palavras.</p>
+    </section>
+  </main>
+
+  <script>
+    function alternarTema() {
+      const body = document.body;
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+      }
+    }
+  </script>
+
+</body>
+</html>
