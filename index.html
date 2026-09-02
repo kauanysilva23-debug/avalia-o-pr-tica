@@ -3,87 +3,211 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cuidado e Lazer</title>
+  <title>Cuidado, Saúde e Lazer</title>
   <style>
+    /* Variáveis do Tema Claro */
     :root {
       --bg-color: #F3E8FF;
-      --text-color: #2E1065;
       --card-bg: #FFFFFF;
-      --accent-color: #7E22CE;
-      --font-size: 20px;
+      --text-color: #2E1065;
+      --primary-color: #7E22CE;
+      --primary-hover: #6B21A8;
+      --border-color: #D8B4FE;
+      --checked-color: #6B7280;
+      --font-base: 20px;
     }
 
+    /* Variáveis do Modo Noturno */
     [data-theme="dark"] {
       --bg-color: #1E1035;
-      --text-color: #F5F3FF;
       --card-bg: #2D1B4E;
-      --accent-color: #C084FC;
+      --text-color: #F5F3FF;
+      --primary-color: #C084FC;
+      --primary-hover: #A855F7;
+      --border-color: #5B21B6;
+      --checked-color: #9CA3AF;
     }
 
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
-      font-size: var(--font-size);
-      font-family: Arial, sans-serif;
+      font-size: var(--font-base);
+      font-family: Arial, Helvetica, sans-serif;
       margin: 0;
       padding: 20px;
       line-height: 1.6;
     }
 
+    /* Barra Superior e Controles de Acessibilidade */
     header {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 20px;
-      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 15px;
+      border-bottom: 3px solid var(--primary-color);
+      gap: 10px;
     }
 
-    .btn-acessibilidade {
-      background-color: var(--accent-color);
-      color: white;
+    .acessibilidade-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background-color: var(--primary-color);
+      color: #FFFFFF;
       border: none;
-      padding: 12px 20px;
+      padding: 12px 18px;
       font-size: 18px;
       font-weight: bold;
       border-radius: 8px;
       cursor: pointer;
+      min-height: 48px; /* Área de clique acessível */
     }
 
+    button:hover {
+      opacity: 0.9;
+    }
+
+    /* Cartões e Seções */
     .card {
       background-color: var(--card-bg);
       padding: 20px;
-      margin-top: 20px;
+      margin-top: 25px;
       border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--border-color);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    /* Estilo da Lista de Checklist (Check) */
+    .checklist {
+      list-style: none;
+      padding: 0;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Customização da Caixa de Seleção (Checkbox Grande) */
+    .check-item input[type="checkbox"] {
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      accent-color: var(--primary-color);
+    }
+
+    /* Estilo quando a tarefa for marcada */
+    .check-item input[type="checkbox"]:checked + label {
+      text-decoration: line-through;
+      color: var(--checked-color);
+    }
+
+    .check-item label {
+      cursor: pointer;
+      flex: 1;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Cuidado & Lazer</h1>
-    <button class="btn-acessibilidade" onclick="alternarTema()">🌙 Alternar Modo Noturno</button>
+    <h1>Cuidado & Bem-Estar</h1>
+    <div class="acessibilidade-bar">
+      <button onclick="alterarFonte(2)" title="Aumentar o tamanho do texto">A+ Aumentar Letra</button>
+      <button onclick="alterarFonte(-2)" title="Diminuir o tamanho do texto">A- Diminuir Letra</button>
+      <button onclick="alternarTema()" id="btn-tema">🌙 Modo Noturno</button>
+    </div>
   </header>
 
   <main>
     <section class="card">
-      <h2>Dicas de Saúde</h2>
-      <p>Lembre-se de beber água regularmente e fazer pequenas caminhadas ao longo do dia.</p>
+      <h2>🥤 Cuidados e Lembretes do Dia</h2>
+      <ul class="checklist">
+        <li class="check-item">
+          <input type="checkbox" id="cuidado1">
+          <label for="cuidado1">Tomar um copo de água ao acordar</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="cuidado2">
+          <label for="cuidado2">Tomar os remédios da manhã</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="cuidado3">
+          <label for="cuidado3">Beber água à tarde (2º Lembrete)</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="cuidado4">
+          <label for="cuidado4">Descansar a vista por 15 minutos</label>
+        </li>
+      </ul>
     </section>
 
     <section class="card">
-      <h2>Jogos Interativos</h2>
-      <p>Exercite sua mente com jogos simples de memória e caça-palavras.</p>
+      <h2>🤸 Exercícios Leves do Dia</h2>
+      <ul class="checklist">
+        <li class="check-item">
+          <input type="checkbox" id="ex1">
+          <label for="ex1"><strong>Alongamento de braços:</strong> Esticar os braços para cima por 10 segundos.</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="ex2">
+          <label for="ex2"><strong>Giro de ombros:</strong> Girar os ombros suavemente para trás 5 vezes.</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="ex3">
+          <label for="ex3"><strong>Pés e calcanhares:</strong> Enquanto sentado, levantar a ponta dos pés 10 vezes.</label>
+        </li>
+        <li class="check-item">
+          <input type="checkbox" id="ex4">
+          <label for="ex4"><strong>Caminhada leve:</strong> Caminhar por 10 minutos dentro de casa ou no quintal.</label>
+        </li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>🧩 Jogos e Distração</h2>
+      <p>Exercite sua mente de forma leve e divertida:</p>
+      <button onclick="alert('Iniciando o Jogo da Memória...')">🎮 Jogar Jogo da Memória</button>
+      <button onclick="alert('Iniciando o Caça-Palavras...')">✏️ Jogar Caça-Palavras</button>
     </section>
   </main>
 
   <script>
+    // Função para Alternar Modo Claro / Noturno
     function alternarTema() {
       const body = document.body;
+      const btn = document.getElementById('btn-tema');
+      
       if (body.getAttribute('data-theme') === 'dark') {
         body.removeAttribute('data-theme');
+        btn.innerHTML = '🌙 Modo Noturno';
       } else {
         body.setAttribute('data-theme', 'dark');
+        btn.innerHTML = '☀️ Modo Claro';
       }
+    }
+
+    // Função para Aumentar ou Diminuir o Tamanho da Fonte
+    let tamanhoFonteAtual = 20;
+    function alterarFonte(delta) {
+      tamanhoFonteAtual += delta;
+      
+      // Limite mínimo de 16px e máximo de 32px para segurança visual
+      if (tamanhoFonteAtual < 16) tamanhoFonteAtual = 16;
+      if (tamanhoFonteAtual > 32) tamanhoFonteAtual = 32;
+
+      document.documentElement.style.setProperty('--font-base', tamanhoFonteAtual + 'px');
     }
   </script>
 
